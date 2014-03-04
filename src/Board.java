@@ -1,3 +1,4 @@
+
 import java.util.Vector;
 
 public class Board implements Comparable<Board>{
@@ -24,8 +25,11 @@ public class Board implements Comparable<Board>{
 	public void setFitness() {
 		int tempFitness = 0;
 		
+		
 		//Keep a vector of ints and add numbers to it as we go, if we run into a repeat we increment fitness
 		Vector<Integer> vInts = new Vector<Integer>();
+		
+		
 		for (int col = 0; col < 9; col++) {
 			for (int row = 0; row < 9; row++) {
 				if (vInts.contains(vRows.get(row).getIntAtIndex(col))) {
@@ -38,6 +42,8 @@ public class Board implements Comparable<Board>{
 			
 			vInts = new Vector<Integer>();
 		}
+		
+		
 		
 		//That handles the columns, now iterate over the 3x3 blocks
 		vInts = new Vector<Integer>();
@@ -55,13 +61,16 @@ public class Board implements Comparable<Board>{
 				}
 			}
 			
-			if (block + 1 % 3 == 0) {
+			colIndex = colIndex + 3;
+			
+			if ((block + 1) % 3 == 0) {
 				rowIndex = rowIndex + 3;
 				colIndex = 0;
 			}
 			
 			vInts = new Vector<Integer>();
 		}
+		
 		
 		fitnessScore = tempFitness;
 	}

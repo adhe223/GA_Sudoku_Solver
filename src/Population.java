@@ -5,7 +5,7 @@ import java.util.Random;
 public class Population {
 	private static final int SELECTIVITY = 10;	//Int from 0 to 100 that decides what percentage of the population to keep each round
 	private static final int SAVIOR_PROB = 5;	//Probability (0 to 99) that a less fit solution will be spared in the pruning
-	private static final int MUTATE_PROB = 0;	//Int from 0 to 100 that represents the probability to mutate a row
+	private static final int MUTATE_PROB = 10;	//Int from 0 to 100 that represents the probability to mutate a row
 	private static int POP_SIZE;
 	
 	private static Vector<Board> vPopBoards;

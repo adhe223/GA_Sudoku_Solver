@@ -3,6 +3,7 @@ public class SudokuDriver {
 	private static final int POP_SIZE = 3000;
 	private static final String IN_BOARD = "790000300000006900800030076000005002005418700400700000610090008002300000009000054";
 	private static final String SOLVED_TEST = "796854321243176985851239476137965842925418763468723519614597238582341697379682154";
+	private static final String ONE_OFF_TEST = "796854321243176985851239476137965842925418763468723519614597238582341657379682154";
 	
 	private static Population myPop;
 	
@@ -14,7 +15,7 @@ public class SudokuDriver {
 	public static void main(String[] args) {
 		SudokuDriver driver = new SudokuDriver();
 		int round = 1;
-		Board solution = null;
+		Board solution = null;		
 		
 		while (solution == null) {
 			System.out.println("Beginning Round " + round + " with a best solution of fitness " + myPop.getBestSolution().getFitness());
@@ -26,6 +27,9 @@ public class SudokuDriver {
 				System.out.println("Congratulations, the genetic solver has found a solution!");
 				System.out.println(myPop.getBestSolution());
 			}
+			
+			round++;
 		}
+		
 	}
 }

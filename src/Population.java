@@ -1,12 +1,16 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 import java.util.Random;
 
 public class Population {
-	private static final int SELECTIVITY = 10;	//Int from 0 to 100 that decides what percentage of the population to keep each round
-	private static final int SAVIOR_PROB = 5;	//Probability (0 to 99) that a less fit solution will be spared in the pruning
-	private static final int MUTATE_PROB = 10;	//Int from 0 to 100 that represents the probability to mutate a row
+	private static int SELECTIVITY = 15;	//Int from 0 to 100 that decides what percentage of the population to keep each round
+	private static int SAVIOR_PROB = 2;	//Probability (0 to 99) that a less fit solution will be spared in the pruning
+	private static int MUTATE_PROB = 5;	//Int from 0 to 100 that represents the probability to mutate a row
+	private int stuckCount = 0;
 	private static int POP_SIZE;
+	private ArrayList<Integer> pastFitness = new ArrayList<Integer>();
+	private static final int resetSize = 10;
 	
 	private static Vector<Board> vPopBoards;
 	private static String originalBoard;
@@ -76,11 +80,53 @@ public class Population {
 		
 		//Now mutate the population
 		for (Board b : vPopBoards) {
-			b.mutate(MUTATE_PROB);
+			b.mutate(MUTATE_PROB, originalBoard);
 		}
 		
 		//Now reassess fitness numbers and sort
 		setFitnessScores();
+		
+		//Finally add our new best solution to the pastFitness array list
+		pastFitness.add(getBestSolution().getFitness());
+	}
+	
+	//Reset if best fitness is unchanged for resetSize rounds.
+	public void reset() {
+		if (pastFitness.size() < resetSize) {
+			return;
+		}
+		//Check if all the same
+		boolean same = true;
+		int firstFit = pastFitness.get(0);
+		for (int i = 1; i < pastFitness.size(); i++) {
+			if (pastFitness.get(i) != firstFit) {
+				same = false;
+				
+				//Not stuck. Remove the first index and continue
+				pastFitness.remove(0);
+				return;
+			}
+		}
+		
+		//If we've made it here we are stuck. Reset pop, past fitness, print statement, and increment stuck count
+		vPopBoards = new Vector<Board>(); 
+		
+		//Fill the population with new boards
+		for (int i = 0; i < POP_SIZE; i++) {
+			vPopBoards.add(new Board(originalBoard));
+		}
+		
+		//Assign fitness score to population
+		setFitnessScores();
+		
+		//Reset past fitness
+		pastFitness = new ArrayList<Integer>();
+		
+		//Print message
+		//System.out.println("\nStuck, resetting the population\n");
+		
+		//Increment stuck count
+		stuckCount++;
 	}
 	
 	public Board getBestSolution() {
@@ -93,6 +139,34 @@ public class Population {
 		}
 		
 		return null;
+	}
+	
+	public int getStuckCount() {
+		return stuckCount;
+	}
+	
+	public void setSelectivity(int inSelect) {
+		SELECTIVITY = inSelect;
+	}
+	
+	public void setSavior(int inSavior) {
+		SAVIOR_PROB = inSavior;
+	}
+	
+	public void setMutate(int inMutate) {
+		MUTATE_PROB = inMutate;
+	}
+	
+	public int getSelectivity() {
+		return SELECTIVITY;
+	}
+	
+	public int getSavior() {
+		return SAVIOR_PROB;
+	}
+	
+	public int getMutate() {
+		return MUTATE_PROB;
 	}
 	
 	private Board cross(Vector<Board> inParents) {

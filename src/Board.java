@@ -15,7 +15,7 @@ public class Board implements Comparable<Board>{
 				rowInts[col] = inputBoard.charAt(index) - '0';	//Convert to int
 				index++;
 			}
-			vRows.add(new Row(rowInts));
+			vRows.add(new Row(rowInts, row));
 		}
 	}
 	
@@ -80,9 +80,9 @@ public class Board implements Comparable<Board>{
 	}
 	
 	//Go through each row and call its mutate function. Will mutate based on the mutate prob (0 to 100)
-	public void mutate(int prob) {
+	public void mutate(int prob, String origBoard) {
 		for (Row r : vRows) {
-			r.mutate(prob);
+			r.mutate(prob, origBoard);
 		}
 	}
 	

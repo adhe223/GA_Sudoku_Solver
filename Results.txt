@@ -1,0 +1,2 @@
+
+Selectivity: 15   Savior: 5   Mutate: 5

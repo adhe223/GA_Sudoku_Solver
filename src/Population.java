@@ -1,11 +1,14 @@
+//Alex Henry
+//Midterm
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 import java.util.Random;
 
 public class Population {
-	private static int SELECTIVITY = 15;	//Int from 0 to 100 that decides what percentage of the population to keep each round
-	private static int SAVIOR_PROB = 2;	//Probability (0 to 99) that a less fit solution will be spared in the pruning
+	private static int SELECTIVITY = 20;	//Int from 0 to 100 that decides what percentage of the population to keep each round
+	private static int SAVIOR_PROB = 10;	//Probability (0 to 99) that a less fit solution will be spared in the pruning
 	private static int MUTATE_PROB = 5;	//Int from 0 to 100 that represents the probability to mutate a row
 	private int stuckCount = 0;
 	private static int POP_SIZE;

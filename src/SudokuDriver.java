@@ -21,13 +21,13 @@ public class SudokuDriver {
 	
 	public SudokuDriver() {
 		//Manually input the board here. An 81 character string of ints 1-9 where 0 are the blank spots
-		myPop = new Population(POP_SIZE, STANDARD6);
+		myPop = new Population(POP_SIZE, EXTREME6);
 	}
 	
 	public static void main(String[] args) {
 		SudokuDriver driver = new SudokuDriver();
 		
-		//for (int mutation = 25; mutation <= 25; mutation+=5) {		
+		//for (int mutation = 1; mutation <= 4; mutation+=1) {		
 			try {
 				File file = new File("Results.txt");
 				
@@ -50,6 +50,7 @@ public class SudokuDriver {
 			//Run number of tests
 			for (int i = 0; i < NUM_TEST; i++) {
 				driver = new SudokuDriver();
+				//myPop.setMutate(mutation);
 				
 				final long startTime = System.nanoTime();
 				
@@ -107,9 +108,9 @@ public class SudokuDriver {
 					}
 				}
 			}
-		//}
 		
 		System.out.println("Testing Finished");
+		//}
 	}
 	
 	public static void resultsToFile(int round, double timeInSeconds, int stuckCount) {

@@ -1,0 +1,12 @@
+
+Selectivity: 20   Savior: 10   Mutate: 2
+Round: 1765   Stuck: 50   Time Elapsed: 90.538188844
+Round: 123   Stuck: 2   Time Elapsed: 6.333822993
+Round: 445   Stuck: 13   Time Elapsed: 23.428991637
+Round: 1211   Stuck: 34   Time Elapsed: 60.589057957
+Round: 482   Stuck: 14   Time Elapsed: 24.209410868
+Round: 738   Stuck: 20   Time Elapsed: 36.74749585
+Round: 3621   Stuck: 102   Time Elapsed: 181.836005684
+Round: 1979   Stuck: 56   Time Elapsed: 98.252175597
+Round: 3941   Stuck: 113   Time Elapsed: 195.258905503
+Round: 4653   Stuck: 133   Time Elapsed: 232.431524093
